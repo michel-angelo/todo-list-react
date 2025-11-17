@@ -2,6 +2,7 @@
 import { useState, useEffect } from "react";
 import "./App.css";
 import ToDoList from "./components/ToDoList.jsx";
+import UserList from "./components/UserList.jsx";
 
 function App() {
   const [listKegiatan, setListKegiatan] = useState(() => {
@@ -84,6 +85,10 @@ function App() {
           />
         ))}
       </div>
+
+      <hr />
+
+      <UserList />
     </>
   );
 }
