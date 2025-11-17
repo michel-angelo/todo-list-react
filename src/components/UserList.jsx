@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import "./UserList.css";
 
 function UserList() {
   const [users, setUsers] = useState([]);
@@ -24,16 +25,21 @@ function UserList() {
   }, []);
 
   if (loading) {
-    return <p>Sabar ya, ganteng/cantik... loading dulu nich...</p>;
+    return (
+      <p className="loading-text">
+        Sabar ya, ganteng/catik... lagi loading data...
+      </p>
+    );
   }
 
   return (
-    <div>
-      <h2>Daftar Pengguna (Dari Internet)</h2>
-      <ul>
+    <div className="user-list-container">
+      <h2>Daftar Pengguna (API)</h2>
+      <ul className="user-list">
         {users.map((user) => (
-          <li key={user.id}>
-            <strong>{user.name}</strong> - {user.email}
+          <li key={user.id} className="user-item">
+            <strong>{user.name}</strong>
+            <span>{user.email}</span>
           </li>
         ))}
       </ul>

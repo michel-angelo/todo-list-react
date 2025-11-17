@@ -59,3 +59,29 @@
 .btn-hapus:hover {
   background-color: #fecaca;
 }
+
+@media (max-width: 600px) {
+  .todo-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .info-kegiatan {
+    width: 100%;
+    margin-bottom: 5px;
+  }
+
+  .tombol-grup {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+  }
+
+  .btn-selesai,
+  .btn-hapus {
+    flex-grow: 1;
+    padding: 12px;
+  }
+}

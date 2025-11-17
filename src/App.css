@@ -53,3 +53,23 @@ hr {
   flex-direction: column;
   gap: 10px;
 }
+
+@media (max-width: 600px) {
+  #root {
+    padding: 1rem;
+    width: 90%;
+  }
+
+  .list-input-kegiatan-container {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .input-kegiatan,
+  .input-jam-kegiatan,
+  .btn-tambah {
+    width: 100%;
+    font-size: 1.1rem;
+    padding: 12px;
+  }
+}

@@ -1,0 +1,45 @@
+/* src/components/UserList.css */
+.user-list-container {
+  margin-top: 2rem;
+  padding: 20px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  text-align: left;
+}
+
+.user-list-container h2 {
+  margin-top: 0;
+  color: #333;
+  border-bottom: 2px solid #eee;
+  padding-bottom: 10px;
+  margin-bottom: 15px;
+}
+
+.user-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.user-item {
+  padding: 10px;
+  border-bottom: 1px solid #f0f0f0;
+  display: flex;
+  justify-content: space-between;
+  color: #555;
+}
+
+.user-item:last-child {
+  border-bottom: none;
+}
+
+.user-item strong {
+  color: #007bff; /* Biru biar senada */
+}
+
+.loading-text {
+  color: #888;
+  font-style: italic;
+  text-align: center;
+}
