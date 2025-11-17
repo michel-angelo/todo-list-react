@@ -34,7 +34,7 @@ function UserList() {
 
   return (
     <div className="user-list-container">
-      <h2>Absen yang udah make aplikasi ini..</h2>
+      <h2>Shoutout buat yang udah make aplikasi ini..</h2>
       <ul className="user-list">
         {users.map((user) => (
           <li key={user.id} className="user-item">
