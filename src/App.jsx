@@ -52,12 +52,12 @@ function App() {
 
   return (
     <>
-      <h1>My To Do List</h1>
+      <h1>My To Do List Terganteng Se-Dunia</h1>
       <div className="list-input-kegiatan-container">
         <input
           type="text"
           className="input-kegiatan"
-          placeholder="Mau ngapain aja?"
+          placeholder="Mau ngapain aja hari ini?"
           value={inputKegiatan}
           onChange={(e) => setInputKegiatan(e.target.value)}
         />
