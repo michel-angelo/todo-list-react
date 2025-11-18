@@ -1,16 +1,138 @@
-// src/App.jsx
-import "./App.css";
-import { Routes, Route } from "react-router-dom";
-import Pengguna from "./pages/Pengguna.jsx";
+import { useState } from "react"; // Tambahin useState
+import { Routes, Route, Link, useLocation } from "react-router-dom";
 import Home from "./pages/Home.jsx";
+import Jadwal from "./pages/Jadwal.jsx";
+import Pomodoro from "./pages/Pomodoro.jsx";
+import Pengguna from "./pages/Pengguna.jsx";
 
 function App() {
+  const location = useLocation();
+
+  // State buat buka/tutup menu di HP
+  const [isOpen, setIsOpen] = useState(false);
+
+  // Daftar Menu (Biar gak nulis manual berkali-kali)
+  const MENU_ITEMS = [
+    { path: "/", label: "📝 ToDo" },
+    { path: "/jadwal", label: "📅 Jadwal" },
+    { path: "/fokus", label: "🍅 Fokus" },
+    { path: "/pengguna", label: "👥 User" },
+  ];
+
+  // Fungsi buat style link aktif
+  const getLinkClass = (path, isMobile = false) => {
+    const isActive = location.pathname === path;
+    const baseClass =
+      "font-semibold px-4 py-2 rounded-lg transition duration-300 ease-in-out block"; // block biar lebar di HP
+
+    // Style beda dikit buat Mobile vs Desktop
+    if (isActive) {
+      return `${baseClass} bg-indigo-600 text-white shadow-md ${
+        isMobile ? "text-center" : ""
+      }`;
+    }
+    return `${baseClass} text-slate-600 hover:bg-indigo-50 hover:text-indigo-600 ${
+      isMobile ? "text-center bg-slate-50" : ""
+    }`;
+  };
+
   return (
-    <div className="app-container">
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/pengguna" element={<Pengguna />} />
-      </Routes>
+    <div className="min-h-screen flex flex-col">
+      {/* === NAVBAR === */}
+      <nav className="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-slate-200 shadow-sm">
+        <div className="container mx-auto px-4 py-3">
+          {/* BARIS ATAS (Logo & Tombol Hamburger) */}
+          <div className="flex justify-between items-center">
+            {/* Logo */}
+            <div className="text-2xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
+              Made by Proud
+            </div>
+
+            {/* MENU DESKTOP (Hidden di HP, Muncul di md ke atas) */}
+            <div className="hidden md:flex gap-2">
+              {MENU_ITEMS.map((item) => (
+                <Link
+                  key={item.path}
+                  to={item.path}
+                  className={getLinkClass(item.path)}
+                >
+                  {item.label}
+                </Link>
+              ))}
+            </div>
+
+            {/* TOMBOL HAMBURGER (Muncul di HP, Hidden di md ke atas) */}
+            <button
+              className="md:hidden text-slate-600 hover:text-indigo-600 focus:outline-none"
+              onClick={() => setIsOpen(!isOpen)}
+            >
+              {/* Ikon Berubah: Kalo open jadi 'X', kalo close jadi 'Garis 3' */}
+              {isOpen ? (
+                <svg
+                  className="w-8 h-8"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M6 18L18 6M6 6l12 12"
+                  />
+                </svg>
+              ) : (
+                <svg
+                  className="w-8 h-8"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M4 6h16M4 12h16M4 18h16"
+                  />
+                </svg>
+              )}
+            </button>
+          </div>
+
+          {/* === MENU MOBILE (DROPDOWN) === */}
+          {/* Render cuma kalo isOpen == true */}
+          {isOpen && (
+            <div className="md:hidden mt-4 flex flex-col gap-3 pb-4 animate-fadeIn">
+              {MENU_ITEMS.map((item) => (
+                <Link
+                  key={item.path}
+                  to={item.path}
+                  className={getLinkClass(item.path, true)}
+                  onClick={() => setIsOpen(false)} // Tutup menu pas link diklik
+                >
+                  {item.label}
+                </Link>
+              ))}
+            </div>
+          )}
+        </div>
+      </nav>
+
+      {/* KONTEN UTAMA */}
+      <main className="flex-grow container mx-auto px-4 py-6">
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/jadwal" element={<Jadwal />} />
+          <Route path="/fokus" element={<Pomodoro />} />
+          <Route path="/pengguna" element={<Pengguna />} />
+        </Routes>
+      </main>
+
+      {/* FOOTER */}
+      <footer className="bg-white py-6 text-center text-slate-400 text-sm border-t border-slate-200">
+        &copy; {new Date().getFullYear()} Made by Proud | Basthatan a.k.a Baby
+        Jesus a.k.a Baß
+      </footer>
     </div>
   );
 }

@@ -1,27 +1,67 @@
-// IMPORT
-import "./ToDoList.css";
-
+// src/components/ToDoList.jsx
 function ToDoList({ kegiatan, onHapus, onSelesai }) {
-  const classNameKegiatan = `todo-item ${kegiatan.done ? "selesai" : ""}`;
+  const containerClass = `group flex justify-between items-center p-4 bg-white rounded-xl border transition-all duration-300 hover:shadow-md ${
+    kegiatan.done
+      ? "border-emerald-200 bg-emerald-50/50"
+      : "border-slate-200 hover:border-indigo-300"
+  }`;
 
   return (
-    <div className={classNameKegiatan}>
-      <div className="info-kegiatan">
-        <h3>{kegiatan.nama}</h3>
-        <p>{kegiatan.jam}</p>
+    <div className={containerClass}>
+      <div className="flex items-center gap-4 flex-grow overflow-hidden">
+        <button
+          onClick={onSelesai}
+          className={`flex-shrink-0 w-6 h-6 rounded-full border-2 flex items-center justify-center transition-colors ${
+            kegiatan.done
+              ? "bg-emerald-500 border-emerald-500"
+              : "border-slate-300 group-hover:border-indigo-400"
+          }`}
+        >
+          {kegiatan.done && <span className="text-white text-xs">✓</span>}
+        </button>
+
+        <div className="min-w-0">
+          <h3
+            className={`font-semibold text-lg truncate transition-all ${
+              kegiatan.done
+                ? "text-slate-400 line-through decoration-2"
+                : "text-slate-700"
+            }`}
+          >
+            {kegiatan.nama}
+          </h3>
+          <p
+            className={`text-xs font-medium ${
+              kegiatan.done ? "text-emerald-600/70" : "text-indigo-500"
+            }`}
+          >
+            {kegiatan.jam ? kegiatan.jam : "--:--"}
+          </p>
+        </div>
       </div>
 
-      <div className="tombol-grup">
-        <button className="btn-selesai" onClick={onSelesai}>
-          ✔
-        </button>
-        <button className="btn-hapus" onClick={onHapus}>
-          🗑️
-        </button>
-      </div>
+      <button
+        onClick={onHapus}
+        className="ml-3 p-2 text-slate-400 hover:text-red-500 hover:bg-red-50 rounded-lg transition-all opacity-0 group-hover:opacity-100 focus:opacity-100"
+        title="Hapus"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          className="h-5 w-5"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
+          />
+        </svg>
+      </button>
     </div>
   );
 }
 
 export default ToDoList;
-// EXPORT
