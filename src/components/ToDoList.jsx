@@ -6,6 +6,25 @@ function ToDoList({ kegiatan, onHapus, onSelesai }) {
       : "border-slate-200 hover:border-indigo-300"
   }`;
 
+  const now = new Date();
+  const yyyy = now.getFullYear();
+  const mm = String(now.getMonth() + 1).padStart(2, "0");
+  const dd = String(now.getDate()).padStart(2, "0");
+
+  const [jam, menit] = kegiatan.jam.split(":");
+
+  const startTime = `${yyyy}${mm}${dd}T${jam}${menit}00`;
+  const endTime = `${yyyy}${mm}${dd}T${String(Number(jam) + 1).padStart(
+    2,
+    "0"
+  )}${menit}00`;
+
+  const googleUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(
+    kegiatan.nama
+  )}&dates=${startTime}/${endTime}&details=Reminder dari MadingApp`;
+
+  window.open(googleUrl, "_blank");
+
   return (
     <div className={containerClass}>
       <div className="flex items-center gap-4 flex-grow overflow-hidden">
@@ -40,26 +59,40 @@ function ToDoList({ kegiatan, onHapus, onSelesai }) {
         </div>
       </div>
 
-      <button
-        onClick={onHapus}
-        className="ml-3 p-2 text-slate-400 hover:text-red-500 hover:bg-red-50 rounded-lg transition-all opacity-0 group-hover:opacity-100 focus:opacity-100"
-        title="Hapus"
-      >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          className="h-5 w-5"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
+      <div className="flex gap-2">
+        {/* TOMBOL REMINDER BARU (Kalender) */}
+        {/* Cuma muncul kalo belum selesai */}
+        {!kegiatan.done && (
+          <button
+            onClick={addToCalendar}
+            className="w-8 h-8 rounded-lg bg-blue-50 text-blue-500 hover:bg-blue-100 flex items-center justify-center transition opacity-0 group-hover:opacity-100 focus:opacity-100"
+            title="Pasang Reminder di Google Calendar"
+          >
+            📅
+          </button>
+        )}
+
+        <button
+          onClick={onHapus}
+          className="w-8 h-8 text-slate-400 hover:text-red-500 hover:bg-red-50 rounded-lg flex items-center justify-center transition opacity-0 group-hover:opacity-100 focus:opacity-100"
+          title="Hapus"
         >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={2}
-            d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
-          />
-        </svg>
-      </button>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="h-5 w-5"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
+            />
+          </svg>
+        </button>
+      </div>
     </div>
   );
 }
