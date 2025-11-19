@@ -60,14 +60,14 @@ function Jadwal() {
       2,
       "0"
     )}${minute}00`;
+
+    const details = `Kuliah ${item.matkul} hari ${item.hari}`;
+    const googleUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(
+      item.matkul
+    )}&dates=${startTime}/${endTime}&details=${details}&recur=RRULE:FREQ=WEEKLY`;
+
+    window.open(googleUrl, "_blank");
   };
-
-  const details = `Kuliah ${item.matkul} hari ${item.hari}`;
-  const googleUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(
-    item.matkul
-  )}&dates=${startTime}/${endTime}&details=${details}&recur=RRULE:FREQ=WEEKLY`;
-
-  window.open(googleUrl, "_blank");
 
   const urutanHari = {
     Senin: 1,
