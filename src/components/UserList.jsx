@@ -1,5 +1,6 @@
 // src/components/UserList.jsx
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
 function UserList() {
   const [users, setUsers] = useState([]);
@@ -77,6 +78,17 @@ function UserList() {
                   {user.website}
                 </a>
               </p>
+              <div className="mt-4 pt-4 border-t border-slate-100 flex justify-between items-center">
+                <span className="text-xs text-slate-400">ID: {user.id}</span>
+
+                {/* INI TOMBOLNYA */}
+                <Link
+                  to={`/pengguna/${user.id}`}
+                  className="bg-indigo-50 text-indigo-600 px-4 py-2 rounded-lg text-sm font-bold hover:bg-indigo-600 hover:text-white transition"
+                >
+                  Lihat Detail &rarr;
+                </Link>
+              </div>
             </div>
           </div>
         ))}

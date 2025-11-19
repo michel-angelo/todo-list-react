@@ -4,6 +4,7 @@ import Home from "./pages/Home.jsx";
 import Jadwal from "./pages/Jadwal.jsx";
 import Pomodoro from "./pages/Pomodoro.jsx";
 import Pengguna from "./pages/Pengguna.jsx";
+import DetailPengguna from "./pages/DetailPengguna.jsx";
 
 function App() {
   const location = useLocation();
@@ -112,6 +113,7 @@ function App() {
           <Route path="/jadwal" element={<Jadwal />} />
           <Route path="/fokus" element={<Pomodoro />} />
           <Route path="/pengguna" element={<Pengguna />} />
+          <Route path="/pengguna/:id" element={<DetailPengguna />} />
         </Routes>
       </main>
 
