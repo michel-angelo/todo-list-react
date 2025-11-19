@@ -9,27 +9,22 @@ function ToDoList({ kegiatan, onHapus, onSelesai }) {
   const username = "Basthatan a.k.a Baby Jesus a.k.a Baß";
 
   const addToCalendar = () => {
-    if (!kegiatan.jam) {
-      alert("Isi jam dulu dong kalo mau pasang reminder!");
+    if (!kegiatan.jam || !kegiatan.tanggal) {
+      alert("Isi tanggal dan jam dulu dong kalo mau pasang reminder!");
       return;
     }
 
-    const now = new Date();
-    const yyyy = now.getFullYear();
-    const mm = String(now.getMonth() + 1).padStart(2, "0");
-    const dd = String(now.getDate()).padStart(2, "0");
+    const [year, month, day] = kegiatan.tanggal.split("-");
 
-    const [jam, menit] = kegiatan.jam.split(":");
+    const [hour, minute] = kegiatan.jam.split(":");
 
-    const startTime = `${yyyy}${mm}${dd}T${jam}${menit}00`;
-    const endTime = `${yyyy}${mm}${dd}T${String(Number(jam) + 1).padStart(
-      2,
-      "0"
-    )}${menit}00`;
+    const startTime = `${year}${month}${day}T${hour}${minute}00`;
+
+    const endTime = startTime;
 
     const googleUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(
       kegiatan.nama
-    )}&dates=${startTime}/${endTime}&details=Reminder dari ToDoList by ${username}`;
+    )}&dates=${startTime}/${endTime}&details=Reminder dari MadingApp`;
 
     window.open(googleUrl, "_blank");
   };
@@ -58,19 +53,20 @@ function ToDoList({ kegiatan, onHapus, onSelesai }) {
           >
             {kegiatan.nama}
           </h3>
-          <p
-            className={`text-xs font-medium ${
+          <div
+            className={`text-xs font-medium flex gap-2 ${
               kegiatan.done ? "text-emerald-600/70" : "text-indigo-500"
             }`}
           >
-            {kegiatan.jam ? kegiatan.jam : "--:--"}
-          </p>
+            {kegiatan.tanggal && <span>📅 {kegiatan.tanggal}</span>}
+            {kegiatan.jam && <span>⏰ {kegiatan.jam}</span>}
+            {!kegiatan.tanggal && !kegiatan.jam && <span>--:--</span>}
+          </div>
         </div>
       </div>
 
       <div className="flex gap-2">
-        {/* TOMBOL REMINDER BARU (Kalender) */}
-        {/* Cuma muncul kalo belum selesai */}
+        {/* Tombol Reminder hanya muncul kalo belum selesai */}
         {!kegiatan.done && (
           <button
             onClick={addToCalendar}

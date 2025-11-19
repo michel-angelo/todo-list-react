@@ -9,6 +9,7 @@ function Home() {
   });
   const [inputKegiatan, setInputKegiatan] = useState("");
   const [inputJam, setInputJam] = useState("");
+  const [inputTanggal, setInputTanggal] = useState("");
 
   useEffect(() => {
     console.log("Ada Perubahan Data! Simpan di Local Storage");
@@ -22,11 +23,13 @@ function Home() {
       id: Date.now(),
       nama: inputKegiatan,
       jam: inputJam,
+      tanggal: inputTanggal,
       done: false,
     };
     setListKegiatan((kegiatanLama) => [...kegiatanLama, kegiatanBaru]);
     setInputKegiatan("");
     setInputJam("");
+    setInputTanggal("");
   };
 
   const hapusKegiatan = (hapusIdKegiatan) => {
@@ -49,37 +52,50 @@ function Home() {
     <div className="max-w-2xl mx-auto">
       <div className="text-center mb-10">
         <h1 className="text-4xl font-extrabold text-center text-slate-800 mb-2">
-          My To Do List <span className="text-indigo-600">Terganteng </span>
-          Se-Dunia
+          My To Do List <span className="text-indigo-600">Terganteng</span>
         </h1>
-        <p className="text-slate-500">Buat tugas disini...</p>
+        <p className="text-slate-500">Catet tugas biar gak lupa, mba/mas...</p>
       </div>
 
       <div className="bg-white p-6 rounded-2xl shadow-lg border border-slate-100 mb-8 transform transition-all hover:shadow-xl">
-        <div className="flex flex-col md:flex-row gap-4">
-          <div className="flex-grow">
+        <div className="flex flex-col gap-4">
+          <div>
             <label className="block text-xs font-bold text-slate-400 uppercase mb-1 ml-1">
               Kegiatan
             </label>
             <input
               type="text"
               className="w-full bg-slate-50 border border-slate-200 text-slate-800 text-sm rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent p-3 transition outline-none"
-              placeholder="Mau Ngapain Aja Hari Ini..."
+              placeholder="Mau ngapain ajasih..."
               value={inputKegiatan}
               onChange={(e) => setInputKegiatan(e.target.value)}
             />
           </div>
 
-          <div className="md:w-1/4">
-            <label className="block text-xs font-bold text-slate-400 uppercase mb-1 ml-1">
-              Jam
-            </label>
-            <input
-              type="time"
-              className="w-full bg-slate-50 border border-slate-200 text-slate-800 text-sm rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent p-3 transition outline-none"
-              value={inputJam}
-              onChange={(e) => setInputJam(e.target.value)}
-            />
+          <div className="flex flex-col md:flex-row gap-4">
+            <div className="flex-grow">
+              <label className="block text-xs font-bold text-slate-400 uppercase mb-1 ml-1">
+                Tanggal
+              </label>
+              <input
+                type="date"
+                className="w-full bg-slate-50 border border-slate-200 text-slate-800 text-sm rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent p-3 transition outline-none"
+                value={inputTanggal}
+                onChange={(e) => setInputTanggal(e.target.value)}
+              />
+            </div>
+
+            <div className="md:w-1/3">
+              <label className="block text-xs font-bold text-slate-400 uppercase mb-1 ml-1">
+                Jam
+              </label>
+              <input
+                type="time"
+                className="w-full bg-slate-50 border border-slate-200 text-slate-800 text-sm rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent p-3 transition outline-none"
+                value={inputJam}
+                onChange={(e) => setInputJam(e.target.value)}
+              />
+            </div>
           </div>
         </div>
 
@@ -91,11 +107,10 @@ function Home() {
         </button>
       </div>
 
-      {/* LIST SECTION */}
       <div className="space-y-3">
         {listKegiatan.length === 0 ? (
           <div className="text-center py-10 text-slate-400 bg-white/50 rounded-xl border-dashed border-2 border-slate-200">
-            <p>Masih kosong nih, nganggur kah?... </p>
+            <p>Masih kosong nih... Nganggur kah?...</p>
           </div>
         ) : (
           listKegiatan.map((kegiatan) => (
