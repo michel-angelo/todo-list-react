@@ -6,24 +6,33 @@ function ToDoList({ kegiatan, onHapus, onSelesai }) {
       : "border-slate-200 hover:border-indigo-300"
   }`;
 
-  const now = new Date();
-  const yyyy = now.getFullYear();
-  const mm = String(now.getMonth() + 1).padStart(2, "0");
-  const dd = String(now.getDate()).padStart(2, "0");
+  const username = "Basthatan a.k.a Baby Jesus a.k.a Baß";
 
-  const [jam, menit] = kegiatan.jam.split(":");
+  const addToCalendar = () => {
+    if (!kegiatan.jam) {
+      alert("Isi jam dulu dong kalo mau pasang reminder!");
+      return;
+    }
 
-  const startTime = `${yyyy}${mm}${dd}T${jam}${menit}00`;
-  const endTime = `${yyyy}${mm}${dd}T${String(Number(jam) + 1).padStart(
-    2,
-    "0"
-  )}${menit}00`;
+    const now = new Date();
+    const yyyy = now.getFullYear();
+    const mm = String(now.getMonth() + 1).padStart(2, "0");
+    const dd = String(now.getDate()).padStart(2, "0");
 
-  const googleUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(
-    kegiatan.nama
-  )}&dates=${startTime}/${endTime}&details=Reminder dari MadingApp`;
+    const [jam, menit] = kegiatan.jam.split(":");
 
-  window.open(googleUrl, "_blank");
+    const startTime = `${yyyy}${mm}${dd}T${jam}${menit}00`;
+    const endTime = `${yyyy}${mm}${dd}T${String(Number(jam) + 1).padStart(
+      2,
+      "0"
+    )}${menit}00`;
+
+    const googleUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(
+      kegiatan.nama
+    )}&dates=${startTime}/${endTime}&details=Reminder dari ToDoList by ${username}`;
+
+    window.open(googleUrl, "_blank");
+  };
 
   return (
     <div className={containerClass}>
