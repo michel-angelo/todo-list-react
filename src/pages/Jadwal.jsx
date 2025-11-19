@@ -195,7 +195,7 @@ function Jadwal() {
               <div className="flex gap-2">
                 <button
                   className="w-10 h-10 rounded-full bg-blue-50 text-blue-500 hover:bg-blue-100 hover:text-blue-600 flex items-center justify-center transition"
-                  onClick={() => addToCalendar(item)}
+                  onClick={() => addToCalender(item)}
                   title="Pasang Reminder Mingguan"
                 >
                   📅
