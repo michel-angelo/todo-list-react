@@ -17,10 +17,8 @@ function Jadwal() {
 
   const tambahJadwal = () => {
     if (!matkul || !jam) return;
-
     const baru = { id: Date.now(), matkul, hari, jam };
     setJadwal([...jadwal, baru]);
-
     setMatkul("");
     setJam("");
   };
@@ -28,6 +26,48 @@ function Jadwal() {
   const hapusJadwal = (id) => {
     setJadwal(jadwal.filter((j) => j.id !== id));
   };
+
+  const addToCalender = (item) => {
+    const dayIndexMap = {
+      Minggu: 0,
+      Senin: 1,
+      Selasa: 2,
+      Rabu: 3,
+      Kamis: 4,
+      Jumat: 5,
+      Sabtu: 6,
+    };
+
+    const targetDayIndex = dayIndexMap[item.hari];
+    const now = new Date();
+    const currentDayIndex = now.getDay();
+
+    let daysUntilTarget = targetDayIndex - currentDayIndex;
+    if (daysUntilTarget < 0) {
+      daysUntilTarget += 7;
+    }
+
+    const targetDate = new Date();
+    targetDate.setDate(now.getDate() + daysUntilTarget);
+
+    const yyyy = targetDate.getFullYear();
+    const mm = String(targetDate.getMonth() + 1).padStart(2, "0");
+    const dd = String(targetDate.getDate()).padStart(2, "0");
+
+    const [hour, minute] = item.jam.split(":");
+    const startTime = `${yyyy}${mm}${dd}T${hour}${minute}00`;
+    const endTime = `${yyyy}${mm}${dd}T${String(Number(hour) + 2).padStart(
+      2,
+      "0"
+    )}${minute}00`;
+  };
+
+  const details = `Kuliah ${item.matkul} hari ${item.hari}`;
+  const googleUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(
+    item.mapel
+  )}&dates=${startTime}/${endTime}&details=${details}&recur=RRULE:FREQ=WEEKLY`;
+
+  window.open(googleUrl, "_blank");
 
   const urutanHari = {
     Senin: 1,
@@ -41,9 +81,7 @@ function Jadwal() {
 
   const jadwalUrut = [...jadwal].sort((a, b) => {
     const bedaHari = urutanHari[a.hari] - urutanHari[b.hari];
-
     if (bedaHari !== 0) return bedaHari;
-
     return a.jam.localeCompare(b.jam);
   });
 
@@ -51,7 +89,7 @@ function Jadwal() {
     <div className="max-w-3xl mx-auto">
       <div className="text-center mb-10">
         <h1 className="text-4xl font-extrabold text-slate-800 mb-2">
-          📅 Jadwal <span className="text-indigo-600">Kuliah</span>
+          Jadwal <span className="text-indigo-600">Kuliah</span>
         </h1>
         <p className="text-slate-500">
           Jangan sampe titip absen terus, mba/mas...
@@ -66,7 +104,7 @@ function Jadwal() {
             </label>
             <input
               className="w-full bg-slate-50 border border-slate-200 p-3 rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none transition"
-              placeholder="apa matkul kalian?"
+              placeholder="apa matkul kalian?..."
               value={matkul}
               onChange={(e) => setMatkul(e.target.value)}
             />
@@ -154,13 +192,23 @@ function Jadwal() {
                 </h3>
               </div>
 
-              <button
-                className="w-10 h-10 rounded-full bg-red-50 text-red-500 hover:bg-red-100 hover:text-red-600 flex items-center justify-center transition"
-                onClick={() => hapusJadwal(item.id)}
-                title="Hapus Jadwal"
-              >
-                🗑️
-              </button>
+              <div className="flex gap-2">
+                <button
+                  className="w-10 h-10 rounded-full bg-blue-50 text-blue-500 hover:bg-blue-100 hover:text-blue-600 flex items-center justify-center transition"
+                  onClick={() => addToCalendar(item)}
+                  title="Pasang Reminder Mingguan"
+                >
+                  📅
+                </button>
+
+                <button
+                  className="w-10 h-10 rounded-full bg-red-50 text-red-500 hover:bg-red-100 hover:text-red-600 flex items-center justify-center transition"
+                  onClick={() => hapusJadwal(item.id)}
+                  title="Hapus Jadwal"
+                >
+                  🗑️
+                </button>
+              </div>
             </div>
           ))
         )}

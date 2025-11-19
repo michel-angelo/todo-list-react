@@ -52,7 +52,8 @@ function Home() {
     <div className="max-w-2xl mx-auto">
       <div className="text-center mb-10">
         <h1 className="text-4xl font-extrabold text-center text-slate-800 mb-2">
-          My To Do List <span className="text-indigo-600">Terganteng</span>
+          My To Do List <span className="text-indigo-600">Terganteng</span>{" "}
+          Sedunia
         </h1>
         <p className="text-slate-500">Catet tugas biar gak lupa, mba/mas...</p>
       </div>
