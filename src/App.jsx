@@ -8,24 +8,20 @@ import Pengguna from "./pages/Pengguna.jsx";
 function App() {
   const location = useLocation();
 
-  // State buat buka/tutup menu di HP
   const [isOpen, setIsOpen] = useState(false);
 
-  // Daftar Menu (Biar gak nulis manual berkali-kali)
   const MENU_ITEMS = [
-    { path: "/", label: "📝 ToDo" },
-    { path: "/jadwal", label: "📅 Jadwal" },
-    { path: "/fokus", label: "🍅 Fokus" },
-    { path: "/pengguna", label: "👥 User" },
+    { path: "/", label: "ToDo" },
+    { path: "/jadwal", label: "Jadwal" },
+    { path: "/fokus", label: "Fokus" },
+    { path: "/pengguna", label: "User" },
   ];
 
-  // Fungsi buat style link aktif
   const getLinkClass = (path, isMobile = false) => {
     const isActive = location.pathname === path;
     const baseClass =
       "font-semibold px-4 py-2 rounded-lg transition duration-300 ease-in-out block"; // block biar lebar di HP
 
-    // Style beda dikit buat Mobile vs Desktop
     if (isActive) {
       return `${baseClass} bg-indigo-600 text-white shadow-md ${
         isMobile ? "text-center" : ""
@@ -38,17 +34,13 @@ function App() {
 
   return (
     <div className="min-h-screen flex flex-col">
-      {/* === NAVBAR === */}
       <nav className="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-slate-200 shadow-sm">
         <div className="container mx-auto px-4 py-3">
-          {/* BARIS ATAS (Logo & Tombol Hamburger) */}
           <div className="flex justify-between items-center">
-            {/* Logo */}
-            <div className="text-2xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
-              Made by Proud
+            <div className="text-2xl font-bold bg-gradient-to-r from-red-400 to-purple-800 bg-clip-text text-transparent">
+              Baß a.k.a Baby Jesus
             </div>
 
-            {/* MENU DESKTOP (Hidden di HP, Muncul di md ke atas) */}
             <div className="hidden md:flex gap-2">
               {MENU_ITEMS.map((item) => (
                 <Link
@@ -61,12 +53,10 @@ function App() {
               ))}
             </div>
 
-            {/* TOMBOL HAMBURGER (Muncul di HP, Hidden di md ke atas) */}
             <button
               className="md:hidden text-slate-600 hover:text-indigo-600 focus:outline-none"
               onClick={() => setIsOpen(!isOpen)}
             >
-              {/* Ikon Berubah: Kalo open jadi 'X', kalo close jadi 'Garis 3' */}
               {isOpen ? (
                 <svg
                   className="w-8 h-8"
@@ -99,8 +89,6 @@ function App() {
             </button>
           </div>
 
-          {/* === MENU MOBILE (DROPDOWN) === */}
-          {/* Render cuma kalo isOpen == true */}
           {isOpen && (
             <div className="md:hidden mt-4 flex flex-col gap-3 pb-4 animate-fadeIn">
               {MENU_ITEMS.map((item) => (
@@ -118,7 +106,6 @@ function App() {
         </div>
       </nav>
 
-      {/* KONTEN UTAMA */}
       <main className="flex-grow container mx-auto px-4 py-6">
         <Routes>
           <Route path="/" element={<Home />} />
@@ -128,7 +115,6 @@ function App() {
         </Routes>
       </main>
 
-      {/* FOOTER */}
       <footer className="bg-white py-6 text-center text-slate-400 text-sm border-t border-slate-200">
         &copy; {new Date().getFullYear()} Made by Proud | Basthatan a.k.a Baby
         Jesus a.k.a Baß

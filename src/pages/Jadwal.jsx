@@ -29,6 +29,24 @@ function Jadwal() {
     setJadwal(jadwal.filter((j) => j.id !== id));
   };
 
+  const urutanHari = {
+    Senin: 1,
+    Selasa: 2,
+    Rabu: 3,
+    Kamis: 4,
+    Jumat: 5,
+    Sabtu: 6,
+    Minggu: 7,
+  };
+
+  const jadwalUrut = [...jadwal].sort((a, b) => {
+    const bedaHari = urutanHari[a.hari] - urutanHari[b.hari];
+
+    if (bedaHari !== 0) return bedaHari;
+
+    return a.jam.localeCompare(b.jam);
+  });
+
   return (
     <div className="max-w-3xl mx-auto">
       <div className="text-center mb-10">
@@ -107,14 +125,24 @@ function Jadwal() {
             Belum ada jadwal, libur kah?... (Atau bolos?...)
           </p>
         ) : (
-          jadwal.map((item) => (
+          jadwalUrut.map((item) => (
             <div
               key={item.id}
               className="bg-white p-4 rounded-xl shadow-sm border-l-4 border-indigo-500 flex justify-between items-center hover:shadow-md transition"
             >
               <div>
                 <div className="flex items-center gap-2 mb-1">
-                  <span className="bg-indigo-100 text-indigo-700 text-xs font-bold px-2 py-1 rounded uppercase">
+                  <span
+                    className={`text-xs font-bold px-2 py-1 rounded uppercase ${
+                      item.hari === "Senin"
+                        ? "bg-red-100 text-red-700"
+                        : item.hari === "Selasa"
+                        ? "bg-orange-100 text-orange-700"
+                        : item.hari === "Jumat"
+                        ? "bg-green-100 text-green-700"
+                        : "bg-indigo-100 text-indigo-700"
+                    }`}
+                  >
                     {item.hari}
                   </span>
                   <span className="text-slate-400 text-sm flex items-center gap-1">
