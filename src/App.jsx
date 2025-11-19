@@ -38,7 +38,7 @@ function App() {
         <div className="container mx-auto px-4 py-3">
           <div className="flex justify-between items-center">
             <div className="text-2xl font-bold bg-gradient-to-r from-red-400 to-purple-800 bg-clip-text text-transparent">
-              Baß a.k.a Baby Jesus
+              Basthatan
             </div>
 
             <div className="hidden md:flex gap-2">

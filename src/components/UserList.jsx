@@ -27,7 +27,8 @@ function UserList() {
   if (loading) {
     return (
       <div className="flex flex-col justify-center items-center h-64">
-        Sabar ya, ganteng/catik... lagi loading data...
+        Lagi Loading... Masih lebih cepet ini daripada otak lo pas ditanya
+        dosen.
         <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-indigo-600"></div>
       </div>
     );
@@ -36,7 +37,7 @@ function UserList() {
   return (
     <div className="max-w-6xl mx-auto">
       <h2 className="text-2xl font-bold text-slate-800 mb-6 border-l-4 border-indigo-600 pl-4 text-center">
-        Shoutout for all the dog who used ts.
+        Absensi Domba-Domba Tersesat yang Butuh Pertolongan.
       </h2>
 
       {/* GRID SYSTEM: 1 kolom di HP, 2 di Tablet, 3 di Laptop */}

@@ -67,12 +67,12 @@ function Pomodoro() {
 
     if (Notification.permission === "granted") {
       new Notification(
-        istirahat ? "Yok Mas/Mba Balik FOKUS Lagi..." : "AKHIRNYAAAA!!!!...",
+        istirahat ? "PUAS SCROLLINGNYA, NYET?" : "OTAK LO UDAH NGEBUL, KAN?",
         {
           body: istirahat
-            ? "kuy, kita lanjutkan Fokus Mode kita..."
-            : "Istirahat dulu mba/mas..., 5 menit aja gausah lama2.",
-          icon: "/vite.svg",
+            ? "Simpen HP lo. Balik jadi budak tugas sebelum lo nyesel seumur hidup."
+            : "Sana istirahat. Isi ulang dopamin lo pake konten sampah 5 menit.",
+          icon: "/carti.svg",
           vibrate: [200, 100, 200],
         }
       );
@@ -125,12 +125,24 @@ function Pomodoro() {
   return (
     <div className="max-w-xl mx-auto text-center pb-10">
       <div className="mb-8">
-        <h1 className="text-4xl font-extrabold text-slate-800 mb-2">
+        <h1 className="text-4xl font-extrabold text-slate-800 mb-4">
           {istirahat ? "☕ Mode Santuy" : "🍅 Mode Fokus"}
         </h1>
-        <p className="text-slate-500">
-          {istirahat ? "Scroll TikTok bentar..." : "Jauhkan HP, tatap layar."}
-        </p>
+
+        {/* TEKS SAVAGE DI SINI */}
+        <div
+          className={`p-4 rounded-xl border ${
+            istirahat
+              ? "bg-teal-50 border-teal-200 text-teal-800"
+              : "bg-orange-50 border-orange-200 text-orange-800"
+          }`}
+        >
+          <p className="font-medium">
+            {istirahat
+              ? "Istirahat 'bentar' katanya. Padahal aslinya bakal 3 jam scrolling TikTok. Dasar lemah."
+              : "Taruh HP lo. Tahan jari lo biar gak gatel buka IG. Pura-pura rajin 25 menit doang susah amat."}
+          </p>
+        </div>
       </div>
 
       <div className="flex justify-center gap-4 mb-6">

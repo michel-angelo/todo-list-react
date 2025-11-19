@@ -88,12 +88,19 @@ function Jadwal() {
   return (
     <div className="max-w-3xl mx-auto">
       <div className="text-center mb-10">
-        <h1 className="text-4xl font-extrabold text-slate-800 mb-2">
-          Jadwal <span className="text-indigo-600">Kuliah</span>
+        <h1 className="text-4xl font-extrabold text-slate-800 mb-6">
+          📅 Jadwal <span className="text-indigo-600">Kuliah</span>
         </h1>
-        <p className="text-slate-500">
-          Jangan sampe titip absen terus, mba/mas...
-        </p>
+        <div className="bg-red-50 border-l-4 border-red-500 p-4 text-left mx-auto max-w-lg shadow-sm rounded-r-lg">
+          <p className="font-bold text-red-800 text-lg mb-1">
+            UKT Elit, Masuk Sulit.
+          </p>
+          <p className="text-sm text-red-700 italic leading-relaxed">
+            Lo kira duit UKT turun dari langit? Kurang-kurangin titip absen,
+            kasian ortu lo capek-capek kerja cuma buat biayain lo tidur di
+            kelas.
+          </p>
+        </div>
       </div>
 
       <div className="bg-white p-6 rounded-2xl shadow-lg border border-slate-100 mb-8">
@@ -104,7 +111,7 @@ function Jadwal() {
             </label>
             <input
               className="w-full bg-slate-50 border border-slate-200 p-3 rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none transition"
-              placeholder="apa matkul kalian?..."
+              placeholder="Pengantar Depresi Semester 1..."
               value={matkul}
               onChange={(e) => setMatkul(e.target.value)}
             />
@@ -159,9 +166,13 @@ function Jadwal() {
       {/* LIST JADWAL */}
       <div className="space-y-4">
         {jadwal.length === 0 ? (
-          <p className="text-center text-slate-400 italic">
-            Belum ada jadwal, libur kah?... (Atau bolos?...)
-          </p>
+          <div className="text-center py-12 bg-red-50 rounded-xl border-2 border-dashed border-red-200 flex flex-col items-center justify-center gap-2">
+            <span className="text-4xl">💸</span>
+            <p className="text-red-800 font-bold px-6">
+              Jadwal kosong? UKT juta-jutaan cuma buat diem di kosan?
+            </p>
+            <p className="text-red-600 text-sm font-medium">Gece, Isi KOCAK!</p>
+          </div>
         ) : (
           jadwalUrut.map((item) => (
             <div
