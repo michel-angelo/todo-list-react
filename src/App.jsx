@@ -17,9 +17,9 @@ function App() {
     return saved
       ? JSON.parse(saved)
       : {
-          name: "Siapa nama lu? gw tau hidup lu palsu, makanya taro aja nama terserah lu disini.",
-          role: "Contoh: Calon Sultan / Veteran Overthinking",
-          bio: "Tulis apa kek disini, terserah lu lah. akun-akun lu.",
+          name: "",
+          role: "",
+          bio: "",
           photo: null,
         };
   });
