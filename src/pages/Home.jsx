@@ -73,7 +73,7 @@ function Home() {
           {/* Teks Panjang Disembunyiin Dulu */}
           <div
             className={`transition-all duration-500 overflow-hidden ${
-              showRant ? "max-h-[5000px] opacity-100" : "max-h-0 opacity-50"
+              showRant ? "max-h-[100000px] opacity-100" : "max-h-0 opacity-50"
             }`}
           >
             <div className="space-y-3 mt-4 border-t border-orange-200 pt-4 text-slate-600">
