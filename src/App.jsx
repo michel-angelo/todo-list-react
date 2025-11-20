@@ -118,8 +118,13 @@ function App() {
       </main>
 
       <footer className="bg-white py-6 text-center text-slate-400 text-sm border-t border-slate-200">
-        &copy; {new Date().getFullYear()} Made by Proud | Basthatan a.k.a Baby
-        Jesus a.k.a Baß
+        <div className="flex flex-col md:flex-row md:justify-center md:items-center gap-1">
+          <span>&copy; {new Date().getFullYear()} Made by Proud</span>
+          <span className="hidden md:inline">|</span>
+          <div className="flex flex-col md:flex-row md:items-center gap-1">
+            <span>Basthatan a.k.a Baby Jesus a.k.a Baß</span>
+          </div>
+        </div>
       </footer>
     </div>
   );
