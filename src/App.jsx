@@ -57,7 +57,7 @@ function App() {
           <div className="flex justify-between items-center">
             {/* Logo */}
             <div className="text-2xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
-              BJT
+              Basthatan
             </div>
 
             {/* Menu Desktop + AVATAR KECIL */}
