@@ -61,7 +61,6 @@ function Pomodoro() {
   };
 
   const mainkanAlarm = () => {
-    // Mainkan Suara
     const audio = new Audio(audioSrc);
     audio.play().catch((e) => console.log("Audio play failed", e));
 
@@ -129,7 +128,6 @@ function Pomodoro() {
           {istirahat ? "☕ Mode Santuy" : "🍅 Mode Fokus"}
         </h1>
 
-        {/* TEKS SAVAGE DI SINI */}
         <div
           className={`p-4 rounded-xl border ${
             istirahat
@@ -197,14 +195,12 @@ function Pomodoro() {
         </div>
       </div>
 
-      {/* === AREA CUSTOM AUDIO === */}
       <div className="bg-white p-4 rounded-xl border border-slate-200 shadow-sm max-w-md mx-auto">
         <h3 className="text-sm font-bold text-slate-500 uppercase mb-3">
           🎵 Setting Alarm
         </h3>
 
         <div className="flex flex-col gap-3 justify-center items-center">
-          {/* Input File */}
           <input
             type="file"
             accept="audio/*"

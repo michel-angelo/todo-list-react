@@ -1,15 +1,14 @@
 import { useState, useEffect } from "react";
-import { useParams, Link } from "react-router-dom"; // useParams buat ambil ID
+import { useParams, Link } from "react-router-dom";
 
 function DetailPengguna() {
-  const { id } = useParams(); // 1. Ambil ID dari URL (misal: 1)
+  const { id } = useParams();
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const ambilDetail = async () => {
       try {
-        // 2. Fetch data SPESIFIK pake ID itu
         const response = await fetch(
           `https://jsonplaceholder.typicode.com/users/${id}`
         );
@@ -22,7 +21,7 @@ function DetailPengguna() {
       }
     };
     ambilDetail();
-  }, [id]); // Jalanin ulang kalo ID berubah
+  }, [id]);
 
   if (loading)
     return (

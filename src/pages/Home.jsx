@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import ToDoList from "../components/ToDoList.jsx";
-import { Link } from "react-router-dom"; // Butuh Link buat navigasi di narasi
+import { Link } from "react-router-dom";
 
 function Home() {
   const [listKegiatan, setListKegiatan] = useState(() => {
@@ -47,7 +47,6 @@ function Home() {
 
   return (
     <div className="max-w-3xl mx-auto">
-      {/* === HERO SECTION (BRANDING & ROASTING) === */}
       <div className="text-center mb-12 space-y-4">
         <h1 className="text-5xl md:text-6xl font-extrabold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent tracking-tight">
           BJT
@@ -56,7 +55,6 @@ function Home() {
           Baby Jesus Tools
         </p>
 
-        {/* KOTAK NARASI SAVAGE */}
         <div className="bg-orange-50 p-6 rounded-2xl border border-orange-200 text-slate-700 text-sm leading-relaxed text-left shadow-inner">
           <div className="font-bold text-orange-800 mb-2 flex items-center gap-2">
             ⚠️ PERINGATAN: BACA DULU SEBELUM PAKE
@@ -70,7 +68,6 @@ function Home() {
             </span>
           </p>
 
-          {/* Teks Panjang Disembunyiin Dulu */}
           <div
             className={`transition-all duration-500 overflow-hidden ${
               showRant ? "max-h-[100000px] opacity-100" : "max-h-0 opacity-50"
@@ -146,7 +143,6 @@ function Home() {
             </div>
           </div>
 
-          {/* Tombol Baca Selengkapnya */}
           <button
             onClick={() => setShowRant(!showRant)}
             className="text-orange-600 font-bold hover:underline text-xs mt-2 flex items-center gap-1"
@@ -157,7 +153,6 @@ function Home() {
           </button>
         </div>
 
-        {/* NAVIGASI MINI */}
         <div className="grid grid-cols-3 gap-2 text-xs md:text-sm mt-6">
           <div className="bg-indigo-50 p-2 rounded border border-indigo-100 text-indigo-700 font-bold">
             📝 Catat Tugas
@@ -177,7 +172,6 @@ function Home() {
         </div>
       </div>
 
-      {/* ... (SISA KODE FORM INPUT & LIST SAMA PERSIS DI BAWAH INI) ... */}
       <div className="bg-white p-6 rounded-2xl shadow-lg border border-slate-100 mb-8 transform transition-all hover:shadow-xl">
         <div className="flex flex-col gap-4">
           <div>

@@ -14,8 +14,8 @@ function Profile({ user, setUser }) {
     const file = e.target.files[0];
     if (!file) return;
 
-    if (file.size > 2 * 1024 * 1024) {
-      alert("Pe'a kali lu ya, dibilang max 2MB… nurut napa.");
+    if (file.size > 2 * 2048 * 2048) {
+      alert("Pe'a kali lu ya, dibilang max 4MB… nurut napa.");
       return;
     }
 

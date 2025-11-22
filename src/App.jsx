@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"; // Tambahin useState
+import { useEffect, useState } from "react";
 import { Routes, Route, Link, useLocation } from "react-router-dom";
 import Home from "./pages/Home.jsx";
 import Jadwal from "./pages/Jadwal.jsx";
@@ -38,7 +38,7 @@ function App() {
   const getLinkClass = (path, isMobile = false) => {
     const isActive = location.pathname === path;
     const baseClass =
-      "font-semibold px-4 py-2 rounded-lg transition duration-300 ease-in-out block"; // block biar lebar di HP
+      "font-semibold px-4 py-2 rounded-lg transition duration-300 ease-in-out block";
 
     if (isActive) {
       return `${baseClass} bg-indigo-600 text-white shadow-md ${
@@ -55,12 +55,10 @@ function App() {
       <nav className="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-slate-200 shadow-sm">
         <div className="container mx-auto px-4 py-3">
           <div className="flex justify-between items-center">
-            {/* Logo */}
             <div className="text-2xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
               Basthatan
             </div>
 
-            {/* Menu Desktop + AVATAR KECIL */}
             <div className="hidden md:flex items-center gap-2">
               {MENU_ITEMS.map((item) => (
                 <Link
@@ -72,7 +70,6 @@ function App() {
                 </Link>
               ))}
 
-              {/* === INI AVATAR DI NAVBAR (Desktop) === */}
               <Link
                 to="/profile"
                 className="ml-4 flex items-center gap-2 pl-4 border-l border-slate-200 group"
@@ -94,9 +91,7 @@ function App() {
               </Link>
             </div>
 
-            {/* Tombol Hamburger + Avatar Mobile */}
             <div className="flex items-center gap-3 md:hidden">
-              {/* Avatar Mobile */}
               <Link to="/profile">
                 <img
                   src={
@@ -145,7 +140,6 @@ function App() {
             </div>
           </div>
 
-          {/* Menu Mobile Dropdown */}
           {isOpen && (
             <div className="md:hidden mt-4 flex flex-col gap-3 pb-4 animate-fadeIn">
               {MENU_ITEMS.map((item) => (
@@ -158,7 +152,6 @@ function App() {
                   {item.label}
                 </Link>
               ))}
-              {/* Link Profile Tambahan di Dropdown */}
               <Link
                 to="/profile"
                 className={getLinkClass("/profile", true)}
@@ -177,8 +170,6 @@ function App() {
           <Route path="/jadwal" element={<Jadwal />} />
           <Route path="/fokus" element={<Pomodoro />} />
           <Route path="/pengguna" element={<Pengguna />} />
-          {/* ROUTE BARU BUAT PROFILE */}
-          {/* Kita lempar 'user' dan 'setUser' sebagai props */}
           <Route
             path="/profile"
             element={<Profile user={user} setUser={setUser} />}

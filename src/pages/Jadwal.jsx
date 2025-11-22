@@ -163,7 +163,6 @@ function Jadwal() {
         </button>
       </div>
 
-      {/* LIST JADWAL */}
       <div className="space-y-4">
         {jadwal.length === 0 ? (
           <div className="text-center py-12 bg-red-50 rounded-xl border-2 border-dashed border-red-200 flex flex-col items-center justify-center gap-2">
